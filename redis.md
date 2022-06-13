@@ -353,7 +353,7 @@ aof的优缺点：
 # redis的发布订阅
 Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。
 
-下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之间的关系：
+下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之间的关系：  
 ![](https://notebook-pictures.obs.cn-north-4.myhuaweicloud.com/051321553483.png)
 
 
@@ -366,7 +366,7 @@ Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消
 - PUBLISH channel message 向指定频道发布消息
 - SUBSCRIBE channel [channel..] 订阅给定的一个或多个频道。
 - UNSUBSCRIBE channel [channel..] 退订一个或多个频道
-- 
+
 代码示例:
 ```
 ------------订阅端----------------------
@@ -405,6 +405,8 @@ Redis 通过 PUBLISH 、SUBSCRIBE 和 PSUBSCRIBE 等命令实现发布和订阅�
 多人在线聊天室。
 稍微复杂的场景，我们就会使用消息中间件MQ处理。
 
+参考资料： <https://www.cnblogs.com/goodAndyxublog/p/13716071.html>
+
 # 主从同步与集群
 主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点（Master）,后者称为从节点（Slave）， 数据的复制是单向的！只能由主节点复制到从节点，从节点不能进行写操作。
 
@@ -415,18 +417,17 @@ Redis 通过 PUBLISH 、SUBSCRIBE 和 PSUBSCRIBE 等命令实现发布和订阅�
 - 故障恢复：当主节点故障时，从节点可以暂时替代主节点提供服务，是一种服务冗余的方式
 - 负载均衡：在主从复制的基础上，配合读写分离，由主节点进行写操作，从节点进行读操作，分担服务器的负载；尤其是在多读少写的场景下，通过多个从节点分担负载，提高并发量。
 - 高可用基石：主从复制还是哨兵和集群能够实施的基础。
-- 
 
 
 主从配置步骤：
 主服务器无需做配置
-配置从机所属主服务器ip和端口
+配置从机所属主服务器ip和端口  
 ![](https://notebook-pictures.obs.cn-north-4.myhuaweicloud.com/70.jpeg)
 
-配置从机所属主服务器的密码（要将密码设置尽量复杂）
+配置从机所属主服务器的密码（要将密码设置尽量复杂）  
 ![](https://notebook-pictures.obs.cn-north-4.myhuaweicloud.com/71.jpeg)
 
-需要注意的是，从服务器通常是只读，所以要配置只读（默认是只读，不要更改即可）
+需要注意的是，从服务器通常是只读，所以要配置只读（默认是只读，不要更改即可）  
 ![](https://notebook-pictures.obs.cn-north-4.myhuaweicloud.com/72.jpeg)
 
 
